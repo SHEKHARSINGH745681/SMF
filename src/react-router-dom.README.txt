@@ -1,0 +1,2 @@
+// This file is required for react-router-dom v6+ to enable routing in App.js
+// Install with: npm install react-router-dom

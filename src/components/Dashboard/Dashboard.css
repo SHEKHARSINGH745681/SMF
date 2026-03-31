@@ -1,0 +1,709 @@
+/* =====================
+   EduDash Dashboard CSS
+   ===================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #f1f5f9;
+}
+
+/* ---- Layout ---- */
+.edu-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+/* =====================
+   SIDEBAR
+   ===================== */
+.edu-sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e5e7eb;
+  transition: width 0.3s ease;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.edu-sidebar.collapsed {
+  width: 64px;
+}
+
+/* Logo */
+.edu-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  min-height: 64px;
+  position: relative;
+}
+
+.edu-logo-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.edu-logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.edu-collapse-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  font-size: 12px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.edu-collapse-btn:hover {
+  color: #14b8a6;
+}
+
+/* Profile */
+.edu-sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.edu-sidebar-profile:hover {
+  background: #f8fafc;
+}
+.edu-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid #e5e7eb;
+  flex-shrink: 0;
+}
+.edu-profile-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+}
+.edu-profile-role {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+.edu-profile-arrow {
+  margin-left: auto;
+  color: #cbd5e1;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* Nav */
+.edu-sidebar-nav {
+  flex: 1;
+  padding: 10px 8px;
+  overflow-y: auto;
+}
+
+.edu-nav-group {
+  margin-bottom: 2px;
+}
+
+.edu-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.edu-nav-item:hover {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.edu-nav-item.active {
+  background: #14b8a6;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.edu-nav-icon {
+  font-size: 15px;
+  flex-shrink: 0;
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edu-nav-label {
+  flex: 1;
+}
+.edu-nav-chevron { font-size: 10px; color: #94a3b8; transition: transform 0.2s; flex-shrink: 0; }
+.edu-nav-chevron.open { transform: rotate(90deg); }
+.edu-nav-item.active > .edu-nav-chevron { color: rgba(255,255,255,0.8); }
+/* Submenu */
+.edu-submenu {
+  list-style: none;
+  padding: 4px 0 4px 28px;
+}
+
+.edu-submenu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+  padding: 2px 0;
+}
+
+.edu-submenu-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid #14b8a6;
+  flex-shrink: 0;
+}
+
+.edu-submenu-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 6px;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  width: 100%;
+}
+.edu-submenu-btn:hover {
+  background: #f1f5f9;
+  color: #14b8a6;
+}
+.edu-submenu-btn.active {
+  color: #14b8a6;
+  font-weight: 700;
+}
+
+/* Sidebar footer */
+.edu-sidebar-footer {
+  padding: 12px 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.edu-settings-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.edu-settings-btn:hover {
+  background: #f1f5f9;
+  color: #14b8a6;
+}
+
+/* =====================
+   MAIN AREA
+   ===================== */
+.edu-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Topbar */
+.edu-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: transparent;
+  gap: 16px;
+}
+
+.edu-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 8px 14px;
+  width: 280px;
+}
+.edu-search-icon {
+  color: #94a3b8;
+  font-size: 14px;
+}
+.edu-search-input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #374151;
+  background: transparent;
+  font-family: inherit;
+  width: 100%;
+}
+.edu-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.edu-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edu-topbar-btn {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  position: relative;
+}
+.edu-topbar-btn:hover {
+  background: #f8fafc;
+}
+
+.edu-bell-dot {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+}
+
+.edu-flag-btn {
+  font-size: 20px;
+  padding: 5px 8px;
+}
+
+.edu-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.edu-topbar-username {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.edu-topbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #e5e7eb;
+  object-fit: cover;
+}
+
+/* =====================
+   PAGE CONTENT
+   ===================== */
+.edu-content {
+  flex: 1;
+  padding: 0 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edu-page-header {
+  margin-bottom: 4px;
+}
+
+.edu-page-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.edu-page-breadcrumb {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+/* =====================
+   TOP SECTION: Stats + Attendance
+   ===================== */
+.edu-top-section {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Stats grid */
+.edu-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.edu-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 16px;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.edu-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+}
+
+/* Card color variants */
+.card-orange { background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); }
+.card-blue   { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); }
+.card-purple { background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%); }
+.card-teal   { background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); }
+.card-green  { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+.card-cyan   { background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%); }
+
+.edu-stat-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.edu-stat-icon {
+  font-size: 22px;
+}
+
+.edu-stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.edu-stat-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.edu-stat-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.edu-stat-change {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.edu-stat-percent {
+  color: #14b8a6;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.edu-stat-month {
+  color: #6b7280;
+  font-size: 11px;
+}
+
+/* =====================
+   ATTENDANCE BOX
+   ===================== */
+.edu-attendance-box {
+  width: 260px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 18px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.edu-box-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 14px;
+}
+
+.edu-attendance-bar-row {
+  display: flex;
+  height: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  gap: 3px;
+  margin-bottom: 18px;
+}
+
+.edu-attendance-bar-seg {
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+.edu-attendance-bar-seg:hover {
+  opacity: 0.8;
+}
+
+.edu-attendance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edu-attendance-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edu-attendance-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.edu-attendance-label {
+  flex: 1;
+  font-size: 13px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.edu-attendance-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* =====================
+   BOTTOM SECTION: Revenue + Calendar
+   ===================== */
+.edu-bottom-section {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Revenue */
+.edu-revenue-box {
+  flex: 1;
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px 20px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  min-width: 0;
+}
+
+.edu-revenue-legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.edu-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.edu-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.edu-legend-item strong {
+  color: #111827;
+  font-weight: 700;
+}
+
+/* Calendar */
+.edu-calendar-box {
+  width: 300px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px 18px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.edu-calendar {
+  width: 100%;
+}
+
+.edu-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  background: #f0fdfa;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.edu-cal-month {
+  font-size: 14px;
+  font-weight: 700;
+  color: #14b8a6;
+}
+
+.edu-cal-nav {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #14b8a6;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.edu-cal-nav:hover {
+  background: #ccfbf1;
+}
+
+.edu-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.edu-cal-day-name {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  padding: 4px 0;
+}
+
+.edu-cal-day {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  padding: 5px 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.edu-cal-day:hover:not(.empty) {
+  background: #f0fdfa;
+  color: #14b8a6;
+}
+.edu-cal-day.empty {
+  cursor: default;
+}
+.edu-cal-day.today {
+  background: #14b8a6;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (max-width: 1100px) {
+  .edu-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .edu-top-section,
+  .edu-bottom-section {
+    flex-direction: column;
+  }
+  .edu-attendance-box,
+  .edu-calendar-box {
+    width: 100%;
+  }
+  .edu-sidebar {
+    width: 64px;
+  }
+  .edu-content {
+    padding: 0 16px 24px 16px;
+  }
+  .edu-topbar {
+    padding: 12px 16px;
+  }
+} 
