@@ -331,7 +331,7 @@ export default function Dashboard({ username = "Linda Adora" }) {
           {activePage === "addStudent" ? (
             <AddStudent />
           ) : activePage === "studentList" ? (
-            <StudentList />
+            <StudentList onAddStudent={() => navigate("addStudent")} />
           ) : activePage === "studentDetails" ? (
             <StudentDetail />
           ) : (

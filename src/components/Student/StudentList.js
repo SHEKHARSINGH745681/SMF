@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./StudentList.css";
+import AddStudent from "./AddStudent";
 
 const STUDENTS = [
   { sl: "01", admNo: "AD52365", name: "Kathryn Murphy", roll: 12, avatar: "https://randomuser.me/api/portraits/men/11.jpg", class: "Class 1 (A)", dob: "05 May 2012", gender: "Male", mobile: "209.555.0104", category: "General", status: "Active" },
@@ -20,7 +21,20 @@ export default function StudentList({ onAddStudent }) {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [openMenu, setOpenMenu] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
+  const [showAddStudent, setShowAddStudent] = useState(false);
   const [filter, setFilter] = useState({ class: "", section: "", gender: "", status: "" });
+
+  const handleAddStudentClick = () => {
+    if (typeof onAddStudent === "function") {
+      onAddStudent();
+      return;
+    }
+    setShowAddStudent(true);
+  };
+
+  if (showAddStudent) {
+    return <AddStudent onBack={() => setShowAddStudent(false)} />;
+  }
 
   const filtered = STUDENTS.filter(s => {
     const matchesSearch = s.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -46,7 +60,7 @@ export default function StudentList({ onAddStudent }) {
           <h2 className="sl-title">Student List</h2>
           <p className="sl-breadcrumb">Dashboard / Student List</p>
         </div>
-        <button className="sl-add-btn" onClick={onAddStudent}>+ Add Student</button>
+        <button className="sl-add-btn" onClick={handleAddStudentClick}>Add Student</button>
       </div>
 
       {/* Toolbar */}
