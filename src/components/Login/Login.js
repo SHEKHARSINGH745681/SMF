@@ -91,16 +91,30 @@ export default function Login({ onSwitchToSignUp, rightOnly = false, onLoginSucc
     // Dummy login logic for testing
     setTimeout(() => {
       setLoading(false);
+
       if (email === "admin@gmail.com" && password === "1234") {
         if (onLoginSuccess) onLoginSuccess(email);
         navigate("/dashboard");
-      } else {
-        toast.error("Invalid username or password.", {
-          position: "top-right",
-          autoClose: 2500,
-          theme: "colored",
-        });
+        return;
       }
+
+      if (email === "student@gmail.com" && password === "1234") {
+        if (onLoginSuccess) onLoginSuccess(email);
+        navigate("/studentdashboard");
+        return;
+      }
+      
+      if (email === "teacher@gmail.com" && password === "1234") {
+        if (onLoginSuccess) onLoginSuccess(email);
+        navigate("/teacherdashboard");
+        return;
+      }
+
+      toast.error("Invalid username or password.", {
+        position: "top-right",
+        autoClose: 2500,
+        theme: "colored",
+      });
     }, 700);
   };
 

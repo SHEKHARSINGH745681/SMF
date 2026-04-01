@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "r
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard";
+import StudentDashboard from "./components/Dashboard/StudentDashboard";
+import TeacherDashboard from "./components/Dashboard/TeacherDashboard";
 import "./components/Login/Login.css";
 
 
@@ -30,6 +32,14 @@ function AppRoutes() {
   const handleLoginSuccess = (userEmail) => {
     setIsLoggedIn(true);
     setUsername(userEmail);
+    if (userEmail?.toLowerCase() === "student@gmail.com") {
+      navigate("/studentdashboard");
+      return;
+    }
+    if (userEmail?.toLowerCase() === "teacher@gmail.com") {
+      navigate("/teacherdashboard");
+      return;
+    }
     navigate("/dashboard");
   };
 
@@ -88,6 +98,26 @@ function AppRoutes() {
         element={
           isLoggedIn ? (
             <Dashboard username={username} onLogout={handleLogout} />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/studentdashboard"
+        element={
+          isLoggedIn ? (
+            <StudentDashboard username={username} onLogout={handleLogout} />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/teacherdashboard"
+        element={
+          isLoggedIn ? (
+            <TeacherDashboard username={username} onLogout={handleLogout} />
           ) : (
             <Navigate to="/login" replace />
           )

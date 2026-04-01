@@ -97,8 +97,6 @@ const OTHER_ITEMS = [
 ];
 
 const WEEK_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const WEEK_DATES = [19, 20, 21, 22, 23, 24, 25];
-const TODAY_IDX = 3; // Wednesday = 22
 
 const AGENDA = [
   { time: "08:00 am", grade: "All Grade", title: "Homeroom & Announcement", color: "purple" },
@@ -110,6 +108,10 @@ const MESSAGES = [
   { initials: "LR", name: "Dr. Lila Ramirez", time: "9:00 AM", text: "Please ensure the monthly attendance report is accurate before the April 30th deadline.", bg: "#EDE9FE", color: "#7C3AED", badge: null },
   { initials: "HM", name: "Ms. Heather Morris", time: "10:15 AM", text: "Don't forget the staff training on digital tools scheduled for May 5th at 3 PM in the...", bg: "#FEF9C3", color: "#A16207", badge: 4 },
   { initials: "CJ", name: "Mr. Carl Jenkins", time: "2:00 PM", text: "Budget review meeting for the next fiscal year is on Thursday morning...", bg: "#E0F2FE", color: "#0369A1", badge: null },
+  { initials: "DW", name: "Ms. Dianne Warren", time: "3:20 PM", text: "Kindly review the updated exam timetable and share it with your class groups today.", bg: "#FCE7F3", color: "#BE185D", badge: null },
+  { initials: "RF", name: "Mr. Robert Fox", time: "4:05 PM", text: "The auditorium is reserved for the annual function rehearsal from 1 PM onward.", bg: "#DCFCE7", color: "#15803D", badge: 2 },
+  { initials: "EP", name: "Ms. Eleanor Pena", time: "5:10 PM", text: "Please submit pending leave approvals before end of day for payroll processing.", bg: "#FEF3C7", color: "#B45309", badge: null },
+  { initials: "KW", name: "Ms. Kristin Watson", time: "6:00 PM", text: "Science project display setup starts tomorrow at 8 AM. Volunteers report early.", bg: "#E0E7FF", color: "#4338CA", badge: 1 },
 ];
 
 const TOP_STUDENTS = [
@@ -118,12 +120,6 @@ const TOP_STUDENTS = [
   { name: "Courtney Henry", studentClass: "Eight", marks: 45, ringColor: "#F59E0B", avatarBg: "#E7EDF8" },
   { name: "Kathryn Murphy", studentClass: "Nine", marks: 65, ringColor: "#22C55E", avatarBg: "#F6E7F6" },
   { name: "Annette Black", studentClass: "Ten", marks: 65, ringColor: "#4F7CFF", avatarBg: "#FBE4E6" },
-  { name: "Darlene Robertson", studentClass: "Five", marks: 28, ringColor: "#A855F7", avatarBg: "#FEE2E2" },
-  { name: "Leslie Alexander", studentClass: "Eleven", marks: 52, ringColor: "#0EA5E9", avatarBg: "#E0F2FE" },
-  { name: "Kristin Watson", studentClass: "Twelve", marks: 74, ringColor: "#22C55E", avatarBg: "#EDE9FE" },
-  { name: "Robert Fox", studentClass: "Seven", marks: 41, ringColor: "#F97316", avatarBg: "#FEF3C7" },
-  { name: "Eleanor Pena", studentClass: "Eight", marks: 58, ringColor: "#4F46E5", avatarBg: "#DCFCE7" },
-  { name: "Jenny Wilson", studentClass: "Nine", marks: 67, ringColor: "#0891B2", avatarBg: "#DBEAFE" },
 ];
 
 const NOTICE_BOARD_ITEMS = [
@@ -228,12 +224,6 @@ const LEAVE_REQUEST_ITEMS = [
   { name: "Leslie Alexander", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#F5E8FF" },
   { name: "Dianne Russell", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#F1F5F9" },
   { name: "Kristin Watson", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#EDE9FE" },
-  { name: "Robert Fox", role: "Math Teacher", days: "2 Days", applyOn: "12 April", avatarBg: "#E0F2FE" },
-  { name: "Courtney Henry", role: "Science Teacher", days: "4 Days", applyOn: "13 April", avatarBg: "#FCE7F3" },
-  { name: "Eleanor Pena", role: "History Teacher", days: "1 Day", applyOn: "15 April", avatarBg: "#DCFCE7" },
-  { name: "Jenny Wilson", role: "Chemistry Teacher", days: "3 Days", applyOn: "17 April", avatarBg: "#E9D5FF" },
-  { name: "Wade Warren", role: "Biology Teacher", days: "2 Days", applyOn: "18 April", avatarBg: "#FEE2E2" },
-  { name: "Guy Hawkins", role: "Physics Teacher", days: "5 Days", applyOn: "20 April", avatarBg: "#FEF3C7" },
 ];
 
 const STAT_CARDS = [
@@ -272,6 +262,16 @@ const attendData = {
 const attendOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  animation: {
+    duration: 1200,
+    easing: "easeOutQuart",
+  },
+  animations: {
+    y: {
+      from: 0,
+      delay: (ctx) => ctx.dataIndex * 70,
+    },
+  },
   plugins: { legend: { display: false } },
   scales: {
     x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 11 }, color: "#98A2B3" } },
@@ -289,6 +289,20 @@ const earningsData = {
 const earningsOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  animation: {
+    duration: 1400,
+    easing: "easeOutCubic",
+  },
+  animations: {
+    x: {
+      from: 0,
+      delay: (ctx) => ctx.dataIndex * 45,
+    },
+    y: {
+      from: 0,
+      delay: (ctx) => ctx.dataIndex * 45,
+    },
+  },
   plugins: { legend: { display: false }, tooltip: { mode: "index", intersect: false, callbacks: { label: (c) => `${c.dataset.label}: $${c.raw}K` } } },
   scales: {
     x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 10 }, color: "#98A2B3" } },
@@ -345,11 +359,47 @@ function MessageItem({ initials, name, time, text, bg, color, badge }) {
 
 /* ─── Main Dashboard ─── */
 export default function Dashboard({ username = "Linda Adora" }) {
+  const today = new Date();
+  const [calendarMonthStart, setCalendarMonthStart] = useState(
+    new Date(today.getFullYear(), today.getMonth(), 1)
+  );
+  const [showAllMessages, setShowAllMessages] = useState(false);
   const [activePage, setActivePage] = useState("dashboard");
   const [openMenus, setOpenMenus] = useState({ students: false });
   const [collapsed, setCollapsed] = useState(false);
   const [showSidebarPromo, setShowSidebarPromo] = useState(true);
   const isLoggedIn = Boolean(username);
+
+  const calendarTitle = calendarMonthStart.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+  const firstDayOfMonth = calendarMonthStart.getDay();
+  const daysInMonth = new Date(
+    calendarMonthStart.getFullYear(),
+    calendarMonthStart.getMonth() + 1,
+    0
+  ).getDate();
+  const calendarDates = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  const calendarCells = [...Array.from({ length: firstDayOfMonth }, () => null), ...calendarDates];
+  const trailing = (7 - (calendarCells.length % 7)) % 7;
+  const calendarGrid = [...calendarCells, ...Array.from({ length: trailing }, () => null)];
+  const isCurrentMonth =
+    calendarMonthStart.getFullYear() === today.getFullYear()
+    && calendarMonthStart.getMonth() === today.getMonth();
+  const visibleMessages = showAllMessages ? MESSAGES : MESSAGES.slice(0, 5);
+
+  const goPrevMonth = () => {
+    setCalendarMonthStart(
+      (prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1)
+    );
+  };
+
+  const goNextMonth = () => {
+    setCalendarMonthStart(
+      (prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1)
+    );
+  };
 
   const initials = username.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 
@@ -801,18 +851,26 @@ export default function Dashboard({ username = "Linda Adora" }) {
                 {/* Week Calendar */}
                 <div className="sh-right-section">
                   <div className="sh-cal-header">
-                    <span className="sh-cal-title">September 2030</span>
+                    <span className="sh-cal-title">{calendarTitle}</span>
                     <div className="sh-cal-nav">
-                      <button className="sh-cal-btn"><ChevronLeft /></button>
-                      <button className="sh-cal-btn"><ChevronRight /></button>
+                      <button className="sh-cal-btn" onClick={goPrevMonth}><ChevronLeft /></button>
+                      <button className="sh-cal-btn" onClick={goNextMonth}><ChevronRight /></button>
                     </div>
                   </div>
-                  <div className="sh-week-row">
-                    {WEEK_DAYS.map((d, i) => (
-                      <div key={d} className="sh-week-day">
-                        <div className="sh-day-name">{d}</div>
-                        <div className={`sh-day-num${i === TODAY_IDX ? " today" : ""}`}>{WEEK_DATES[i]}</div>
-                      </div>
+                  <div className="sh-cal-weekdays">
+                    {WEEK_DAYS.map((d) => (
+                      <div key={d} className="sh-cal-weekday">{d}</div>
+                    ))}
+                  </div>
+                  <div className="sh-cal-grid">
+                    {calendarGrid.map((date, index) => (
+                      <button
+                        key={`${date ?? "empty"}-${index}`}
+                        className={`sh-cal-date${date === null ? " empty" : ""}${isCurrentMonth && date === today.getDate() ? " today" : ""}`}
+                        disabled={date === null}
+                      >
+                        {date ?? ""}
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -830,9 +888,13 @@ export default function Dashboard({ username = "Linda Adora" }) {
                 <div className="sh-right-section">
                   <div className="sh-section-head">
                     <span className="sh-section-title">Messages</span>
-                    <span className="sh-view-all">View All</span>
+                    <span className="sh-view-all" onClick={() => setShowAllMessages((prev) => !prev)}>
+                      {showAllMessages ? "Show Less" : "View All"}
+                    </span>
                   </div>
-                  {MESSAGES.map((m, i) => <MessageItem key={i} {...m} />)}
+                  <div className={`sh-messages-list${showAllMessages ? " expanded" : ""}`}>
+                    {visibleMessages.map((m, i) => <MessageItem key={i} {...m} />)}
+                  </div>
                 </div>
 
                 
