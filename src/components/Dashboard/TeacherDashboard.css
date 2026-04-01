@@ -149,23 +149,35 @@ body {
 .pd-banner {
   border-radius: 18px;
   background: linear-gradient(120deg, #0ea5e9 0%, #06b6d4 40%, #14b8a6 100%);
+  background-size: 220% 220%;
   padding: 0 28px;
   display: flex; align-items: stretch;
   min-height: 140px; overflow: hidden; position: relative;
+  isolation: isolate;
+  animation: pdBannerGradientFlow 16s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 .pd-banner::before {
   content: '';
   position: absolute; top: -30px; right: 260px;
   width: 180px; height: 180px;
   background: rgba(255,255,255,0.1); border-radius: 50%;
+  filter: blur(1px);
+  animation: pdBannerBlobFloatA 10s cubic-bezier(0.42, 0, 0.2, 1) infinite;
 }
 .pd-banner::after {
   content: '';
   position: absolute; bottom: -50px; left: 300px;
   width: 150px; height: 150px;
   background: rgba(255,255,255,0.08); border-radius: 50%;
+  filter: blur(1px);
+  animation: pdBannerBlobFloatB 12s cubic-bezier(0.42, 0, 0.2, 1) infinite;
 }
-.pd-banner-text { flex: 1; display: flex; flex-direction: column; justify-content: center; z-index: 1; padding: 22px 0; }
+.pd-banner-text {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  z-index: 1; padding: 22px 0;
+  animation: pdBannerTextReveal 700ms cubic-bezier(0.22, 1, 0.36, 1), pdBannerTextFloat 8s ease-in-out 1s infinite;
+  will-change: transform, opacity;
+}
 .pd-banner-heading {
   font-size: 22px; font-weight: 700; color: #fff;
   line-height: 1.3; margin-bottom: 14px; max-width: 440px;
@@ -174,10 +186,22 @@ body {
 .pd-banner-meta-item {
   display: flex; align-items: center; gap: 6px;
   font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 500;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: pdBannerMetaReveal 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.pd-banner-meta-item:nth-child(1) { animation-delay: 140ms; }
+.pd-banner-meta-item:nth-child(2) { animation-delay: 260ms; }
+.pd-banner-meta-item:nth-child(n+3) { animation-delay: 380ms; }
+.pd-banner-meta-item svg {
+  transform-origin: center;
+  animation: pdBannerIconOrbit 5s ease-in-out infinite;
 }
 .pd-banner-img {
   flex-shrink: 0; display: flex; align-items: flex-end;
   z-index: 1; padding-top: 8px;
+  animation: pdBannerImageReveal 820ms cubic-bezier(0.22, 1, 0.36, 1), pdBannerImageFloat 7s ease-in-out 1.1s infinite;
+  will-change: transform, opacity;
 }
 .pd-banner-illustration {
   width: 160px; height: 120px;
@@ -189,13 +213,106 @@ body {
   position: absolute; bottom: 0; right: 10px;
   width: 100px; height: 100px; border-radius: 50%;
   background: rgba(255,255,255,0.15);
+  animation: pdBannerPulseSoft 4.8s ease-in-out infinite;
 }
 .pd-banner-circle2 {
   position: absolute; top: 10px; left: 10px;
   width: 60px; height: 60px; border-radius: 50%;
   background: rgba(255,255,255,0.1);
+  animation: pdBannerPulseSoft 3.8s ease-in-out infinite reverse;
 }
-.pd-banner-emoji { font-size: 80px; line-height: 1; position: relative; z-index: 1; }
+.pd-banner-lottie {
+  width: 132px;
+  height: 132px;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
+  animation: pdBannerImageFloat 7s ease-in-out 1.1s infinite;
+}
+
+@keyframes pdBannerGradientFlow {
+  0% { background-position: 0% 42%; }
+  50% { background-position: 100% 58%; }
+  100% { background-position: 0% 42%; }
+}
+
+@keyframes pdBannerBlobFloatA {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+  50% { transform: translate3d(-8px, 10px, 0) scale(1.04); opacity: 1; }
+  100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+}
+
+@keyframes pdBannerBlobFloatB {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
+  50% { transform: translate3d(10px, -8px, 0) scale(1.06); opacity: 1; }
+  100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
+}
+
+@keyframes pdBannerPulseSoft {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes pdBannerTextReveal {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes pdBannerMetaReveal {
+  from { opacity: 0; transform: translate3d(0, 8px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes pdBannerImageReveal {
+  from { opacity: 0; transform: translate3d(14px, 8px, 0) scale(0.96); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes pdBannerTextFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes pdBannerImageFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pdBannerIconOrbit {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-1px) rotate(6deg); }
+}
+
+@keyframes pdBannerEmojiWalk {
+  0% { transform: translateX(-20px) translateY(0) scaleX(1) rotate(-1deg); }
+  10% { transform: translateX(-14px) translateY(-4px) scaleX(1) rotate(1deg); }
+  20% { transform: translateX(-8px) translateY(0) scaleX(1) rotate(-1deg); }
+  30% { transform: translateX(-2px) translateY(-4px) scaleX(1) rotate(1deg); }
+  40% { transform: translateX(4px) translateY(0) scaleX(1) rotate(-1deg); }
+  50% { transform: translateX(12px) translateY(-4px) scaleX(1) rotate(1deg); }
+  51% { transform: translateX(12px) translateY(-4px) scaleX(-1) rotate(-1deg); }
+  60% { transform: translateX(4px) translateY(0) scaleX(-1) rotate(1deg); }
+  70% { transform: translateX(-2px) translateY(-4px) scaleX(-1) rotate(-1deg); }
+  80% { transform: translateX(-8px) translateY(0) scaleX(-1) rotate(1deg); }
+  90% { transform: translateX(-14px) translateY(-4px) scaleX(-1) rotate(-1deg); }
+  100% { transform: translateX(-20px) translateY(0) scaleX(1) rotate(-1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-banner,
+  .pd-banner::before,
+  .pd-banner::after,
+  .pd-banner-text,
+  .pd-banner-img,
+  .pd-banner-meta-item,
+  .pd-banner-meta-item svg,
+  .pd-banner-circle1,
+  .pd-banner-circle2,
+  .pd-banner-lottie {
+    animation: none;
+  }
+}
 
 /* ── Stat Cards ── */
 .pd-stats-grid {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale, LinearScale,
@@ -6,6 +6,7 @@ import {
   ArcElement, Filler, Tooltip, Legend,
 } from "chart.js";
 import { Doughnut, Bar, Line } from "react-chartjs-2";
+import lottie from "lottie-web";
 import "./TeacherDashboard.css";
 
 ChartJS.register(
@@ -74,6 +75,7 @@ const OTHER_ITEMS = [
 ];
 
 const WEEK_DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const TEACHING_BANNER_LOTTIE_URL = "/animations/teaching.json";
 
 /* ─── Static data ─── */
 const STAT_CARDS = [
@@ -207,6 +209,7 @@ function TaskItem({ task, onToggle, onDelete }) {
 /* ─── Main Dashboard ─── */
 export default function ParentDashboard({ username = "Heaters Morris" }) {
   const today = new Date();
+  const bannerLottieRef = useRef(null);
   const [activePage, setActivePage]           = useState("dashboard");
   const [collapsed,  setCollapsed]             = useState(false);
   const [tasks,      setTasks]                 = useState(TASKS_INIT);
@@ -214,6 +217,22 @@ export default function ParentDashboard({ username = "Heaters Morris" }) {
   const [calendarMonthStart, setCalendarMonthStart] = useState(
     new Date(today.getFullYear(), today.getMonth(), 1)
   );
+
+  useEffect(() => {
+    if (!bannerLottieRef.current) return undefined;
+
+    const animation = lottie.loadAnimation({
+      container: bannerLottieRef.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: TEACHING_BANNER_LOTTIE_URL,
+    });
+
+    return () => {
+      animation.destroy();
+    };
+  }, []);
 
   /* calendar helpers */
   const calendarTitle   = calendarMonthStart.toLocaleDateString("en-US", { month: "long", year: "numeric" });
@@ -351,7 +370,11 @@ export default function ParentDashboard({ username = "Heaters Morris" }) {
                   <div className="pd-banner-illustration">
                     <div className="pd-banner-circle1" />
                     <div className="pd-banner-circle2" />
-                    <span className="pd-banner-emoji">👩‍👧</span>
+                    <div
+                      ref={bannerLottieRef}
+                      className="pd-banner-lottie"
+                      aria-label="Teaching animation"
+                    />
                   </div>
                 </div>
               </div>
