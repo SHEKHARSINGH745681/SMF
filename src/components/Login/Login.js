@@ -98,6 +98,7 @@ export default function Login({ onSwitchToSignUp, rightOnly = false, onLoginSucc
     }, 700);
   };
 
+  
   const rightSection = (
     <div className="right">
       <div className="login-card">
