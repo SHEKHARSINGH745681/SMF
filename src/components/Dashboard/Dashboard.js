@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import AddStudent from "../Student/AddStudent";
 import StudentList from "../Student/StudentList";
 import StudentDetail from "../Student/StudentDetail";
@@ -215,6 +215,8 @@ export default function Dashboard({ username = "Linda Adora" }) {
   const [activePage, setActivePage] = useState("dashboard");
   const [openMenus, setOpenMenus] = useState({ students: false });
   const [collapsed, setCollapsed] = useState(false);
+  const [showSidebarPromo, setShowSidebarPromo] = useState(true);
+  const isLoggedIn = Boolean(username);
 
   const initials = username.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 
@@ -222,6 +224,26 @@ export default function Dashboard({ username = "Linda Adora" }) {
 
   const navigate = (key) => {
     setActivePage(key);
+  };
+
+  const handlePromoDownload = () => {
+    const content = [
+      "EduDash dummy download file",
+      "This is a sample text file.",
+      `Generated at: ${new Date().toLocaleString()}`,
+    ].join("\n");
+
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "edudash-dummy.txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    setShowSidebarPromo(false);
   };
 
   return (
@@ -282,8 +304,8 @@ export default function Dashboard({ username = "Linda Adora" }) {
           ))}
 
           <div className="sh-nav-spacer" />
-          {!collapsed && <div className="sh-nav-label" style={{ marginTop: 8 }}>Other</div>}
-          {OTHER_ITEMS.map((item) => (
+          {!collapsed && showSidebarPromo && <div className="sh-nav-label" style={{ marginTop: 8 }}>Other</div>}
+          {showSidebarPromo && OTHER_ITEMS.map((item) => (
             <button
               key={item.key}
               className={`sh-nav-item${item.danger ? " danger" : ""}`}
@@ -294,6 +316,43 @@ export default function Dashboard({ username = "Linda Adora" }) {
             </button>
           ))}
         </nav>
+
+        {!collapsed && isLoggedIn && (
+          <div className="sh-sidebar-promo-wrap">
+            {showSidebarPromo ? (
+              <div className="sh-sidebar-promo-card">
+                <button
+                  className="sh-sidebar-promo-close"
+                  onClick={() => setShowSidebarPromo(false)}
+                  aria-label="Close card"
+                >
+                  x
+                </button>
+                <div className="sh-sidebar-promo-text">
+                  Let's Manage
+                  <br />
+                  Your Data Better
+                  <br />
+                  in Your Hand
+                </div>
+                <button className="sh-sidebar-promo-btn" onClick={handlePromoDownload}>Download the App</button>
+              </div>
+            ) : (
+              <div className="sh-sidebar-actions">
+                <div className="sh-nav-label">Other</div>
+                {OTHER_ITEMS.map((item) => (
+                  <button
+                    key={item.key}
+                    className={`sh-nav-item${item.danger ? " danger" : ""}`}
+                  >
+                    <span className="sh-nav-icon">{item.icon}</span>
+                    <span className="sh-nav-label-text">{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </aside>
 
       {/* ── Main ── */}
@@ -477,6 +536,8 @@ export default function Dashboard({ username = "Linda Adora" }) {
                   </div>
                   {MESSAGES.map((m, i) => <MessageItem key={i} {...m} />)}
                 </div>
+
+                
               </aside>
             </div>
           )}

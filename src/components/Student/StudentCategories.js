@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./StudentCategories.css";
 import { FaSearch, FaEllipsisV, FaPlus } from "react-icons/fa";
 
@@ -15,6 +15,19 @@ const data = [
 ];
 
 export default function StudentCategories() {
+  const [showDrawer, setShowDrawer] = useState(false);
+  const [categoryName, setCategoryName] = useState("");
+  const [status, setStatus] = useState("Active");
+
+  const closeDrawer = () => {
+    setShowDrawer(false);
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    closeDrawer();
+  };
+
   return (
     <div className="sc-wrap">
       
@@ -25,7 +38,7 @@ export default function StudentCategories() {
           <p className="sc-breadcrumb">Dashboard / Student Categories</p>
         </div>
 
-        <button className="sc-add-btn">
+        <button className="sc-add-btn" onClick={() => setShowDrawer(true)}>
           <FaPlus /> New Category
         </button>
       </div>
@@ -76,6 +89,42 @@ export default function StudentCategories() {
           </tbody>
         </table>
       </div>
+
+      {showDrawer && (
+        <div className="sc-drawer-overlay" onClick={closeDrawer}>
+          <aside className="sc-drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="sc-drawer-head">
+              <h3>Add New Student Category</h3>
+              <button className="sc-drawer-close" onClick={closeDrawer} aria-label="Close">x</button>
+            </div>
+
+            <form className="sc-drawer-body" onSubmit={handleSave}>
+              <div className="sc-field">
+                <label>Student Category Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter Student Category Name"
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                />
+              </div>
+
+              <div className="sc-field">
+                <label>Status</label>
+                <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+
+              <div className="sc-drawer-actions">
+                <button type="button" className="sc-cancel-btn" onClick={closeDrawer}>Cancel</button>
+                <button type="submit" className="sc-save-btn">Save</button>
+              </div>
+            </form>
+          </aside>
+        </div>
+      )}
     </div>
   );
 }

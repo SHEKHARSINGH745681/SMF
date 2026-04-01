@@ -4,6 +4,8 @@ import lottie from "lottie-web";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 
 export default function Login({ onSwitchToSignUp, rightOnly = false, onLoginSuccess }) {
@@ -93,7 +95,11 @@ export default function Login({ onSwitchToSignUp, rightOnly = false, onLoginSucc
         if (onLoginSuccess) onLoginSuccess(email);
         navigate("/dashboard");
       } else {
-        setError("Invalid email or password (try admin@gmail.com / 1234)");
+        toast.error("Invalid username or password.", {
+          position: "top-right",
+          autoClose: 2500,
+          theme: "colored",
+        });
       }
     }, 700);
   };
@@ -171,6 +177,7 @@ export default function Login({ onSwitchToSignUp, rightOnly = false, onLoginSucc
               </p>
 
             </form>
+            <ToastContainer />
       </div>
     </div>
   );
