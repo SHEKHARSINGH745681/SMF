@@ -1,14 +1,15 @@
 /* StudentList.css */
 
 .sl-wrap {
+  width: 100%;        /* ✅ add this */
+  min-height: 100vh;
   padding: 24px 28px;
   background: #f1f5f9;
-  height: 100vh;
-  overflow-y: auto;
-  font-family: "Segoe UI", sans-serif;
   box-sizing: border-box;
 }
-
+.sl-table-wrap {
+  max-height: 100%;
+}
 /* Header */
 .sl-header {
   display: flex;

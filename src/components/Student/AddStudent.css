@@ -5,8 +5,9 @@
   background: #f1f5f9;
   min-height: 100vh;
   font-family: "Segoe UI", sans-serif;
+  width: 100%;          /* ← ADD THIS */
+  box-sizing: border-box; /* ← ADD THIS */
 }
-
 /* Header */
 .as-header { margin-bottom: 20px; }
 .as-title { font-size: 22px; font-weight: 700; color: #111827; margin: 0 0 4px; }
@@ -19,6 +20,9 @@
   padding: 22px 24px;
   margin-bottom: 16px;
   border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .as-card-title {

@@ -1,9 +1,11 @@
 /* StudentDetail.css */
 .sd-wrap {
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 0 16px 32px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px 28px 32px 28px;
   font-family: 'Inter', Arial, sans-serif;
+  background: #f1f5f9;  /* ← ADD THIS to match your app bg */
+  min-height: 100vh;    /* ← ADD THIS */
 }
 
 .sd-header {
@@ -13,9 +15,10 @@
   margin-bottom: 24px;
 }
 .sd-title {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 2px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 4px;
 }
 .sd-breadcrumb {
   color: #8a99b3;
@@ -40,6 +43,8 @@
   display: flex;
   align-items: flex-start;
   gap: 32px;
+  width: 100%;          /* ← ADD THIS */
+  box-sizing: border-box; /* ← ADD THIS */
 }
 .sd-profile {
   flex: 0 0 260px;
