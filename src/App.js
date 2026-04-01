@@ -10,15 +10,17 @@ import StudentDashboard from "./components/Dashboard/StudentDashboard";
 import TeacherDashboard from "./components/Dashboard/TeacherDashboard";
 import "./components/Login/Login.css";
 
-
-function AppRoutes() {
-  const [isSignUpView, setIsSignUpView] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
+/**
+ * LottieLoginPanel
+ * Isolated component so its own useEffect fires on mount — guarantees
+ * lottieContainer.current is set when the animation initialises, regardless
+ * of how the parent router got here (redirect vs. direct load).
+ */
+function LottieLoginPanel() {
   const lottieContainer = useRef(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!lottieContainer.current) return;
     const anim = lottie.loadAnimation({
       container: lottieContainer.current,
       renderer: "svg",
@@ -28,6 +30,26 @@ function AppRoutes() {
     });
     return () => anim.destroy();
   }, []);
+
+  return (
+    <div className="left">
+      <h1>
+        Department of School Education <br />
+        Uttar Pradesh
+      </h1>
+      <p>
+        Keep learning, keep growing, and keep achieving new heights every day 📚
+      </p>
+      <div ref={lottieContainer} className="lottie-animation"></div>
+    </div>
+  );
+}
+
+function AppRoutes() {
+  const [isSignUpView, setIsSignUpView] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   const handleLoginSuccess = (userEmail) => {
     setIsLoggedIn(true);
@@ -54,41 +76,34 @@ function AppRoutes() {
       <Route
         path="/login"
         element={
-          <div style={{ position: 'relative', minHeight: '100vh' }}>
-            <div className="login-wrapper">
-              <div className="container">
-                <div className="left">
-                  <h1>
-                    Department of School Education <br />
-                    Uttar Pradesh
-                  </h1>
-                  <p>
-                    Keep learning, keep growing, and keep achieving new heights every day 📚
-                  </p>
-                  <div ref={lottieContainer} className="lottie-animation"></div>
-                </div>
-                {isSignUpView ? (
-                  <SignUp
-                    rightOnly
-                    onSwitchToSignIn={() => setIsSignUpView(false)}
-                  />
-                ) : (
-                  <Login
-                    rightOnly
-                    onSwitchToSignUp={() => setIsSignUpView(true)}
-                    onLoginSuccess={handleLoginSuccess}
-                  />
-                )}
-              </div>
+          /* Single root element — login-wrapper covers 100vh with the purple
+             gradient, so no gray body flash. Footer sits inside the wrapper. */
+          <div className="login-wrapper" style={{ position: 'relative' }}>
+            <div className="container">
+              <LottieLoginPanel />
+              {isSignUpView ? (
+                <SignUp
+                  rightOnly
+                  onSwitchToSignIn={() => setIsSignUpView(false)}
+                />
+              ) : (
+                <Login
+                  rightOnly
+                  onSwitchToSignUp={() => setIsSignUpView(true)}
+                  onLoginSuccess={handleLoginSuccess}
+                />
+              )}
             </div>
             <footer style={{
               position: 'absolute',
               bottom: '10px',
-              right: '10px',
-              fontSize: '12px',
-              color: '#666'
+              right: '14px',
+              fontSize: '11px',
+              color: 'rgba(255,255,255,0.55)',
+              fontFamily: 'Poppins, sans-serif',
+              pointerEvents: 'none',
             }}>
-              © 2026 SchoolOne. All Rights Reserved Privacy Policy Version 
+              © 2026 SchoolOne. All Rights Reserved
             </footer>
           </div>
         }

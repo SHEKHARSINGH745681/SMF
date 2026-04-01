@@ -2,19 +2,43 @@
    SchoolHub Dashboard — Dashboard.css
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+/* Font and reset are provided by index.css */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ── Consistent accent: softer purple-blue tones bridging login palette ── */
+/* Login uses #667eea→#764ba2. Dashboards use softer indigo-blue variants.  */
+
+/* Upgrade topbar background to a very subtle gradient top border */
+.sh-topbar {
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, #667eea22 0%, #764ba222 100%) 1;
 }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: #F5F6FA;
-  color: #344054;
+/* Upgrade active nav item from plain blue to indigo gradient */
+.sh-nav-item.active {
+  background: linear-gradient(135deg, #ede9fe 0%, #dbeafe 100%);
+  color: #5b21b6;
+  font-weight: 600;
 }
+
+.sh-nav-item.active .sh-arrow { color: rgba(91, 33, 182, 0.4); }
+
+.sh-submenu-btn.active { color: #5b21b6; }
+
+/* Sidebar logo icon — softer indigo tint */
+.sh-logo-icon { background: #ede9fe; }
+
+/* Upgrade user avatar accent */
+.sh-user-avatar { background: #ede9fe; color: #5b21b6; }
+
+/* Calendar today highlight — indigo */
+.sh-cal-date.today { background: linear-gradient(135deg, #667eea, #764ba2); }
+
+/* View all link */
+.sh-view-all { color: #667eea; }
+
+/* Collapse btn hover */
+.sh-collapse-btn:hover { color: #667eea; }
+.sh-cal-btn:hover { background: #ede9fe; color: #667eea; }
 
 /* ============================================================
    LAYOUT
@@ -22,7 +46,7 @@ body {
 .sh-layout {
   display: flex;
   height: 100vh;
-  min-height: 100vh;
+  min-height: 480px; /* prevent total collapse on very small windows */
   background: #F5F6FA;
   overflow: hidden;
 }
@@ -316,7 +340,7 @@ body {
   border: 0.5px solid #EAECF0;
   border-radius: 10px;
   padding: 8px 14px;
-  width: 260px;
+  width: clamp(140px, 22vw, 260px);
 }
 .sh-search-box input {
   border: none;
@@ -1005,4 +1029,19 @@ body {
   .sh-center-col { padding: 12px; }
   .sh-stats-grid { grid-template-columns: 1fr 1fr; }
   .sh-topbar { padding: 12px 16px; }
+  .sh-search-box { width: 180px; }
+}
+
+@media (max-width: 480px) {
+  .sh-sidebar { width: 56px; }
+  .sh-center-col { padding: 10px 8px; }
+  .sh-stats-grid { grid-template-columns: 1fr; }
+  .sh-topbar { padding: 10px 12px; gap: 8px; }
+  .sh-search-box { width: 140px; }
+  .sh-stat-val { font-size: 22px; }
+  .sh-mid-grid { grid-template-columns: 1fr; }
+  .sh-bottom-grid,
+  .sh-bottom-grid-two,
+  .sh-bottom-grid-three,
+  .sh-bottom-grid-admission { grid-template-columns: 1fr; }
 }

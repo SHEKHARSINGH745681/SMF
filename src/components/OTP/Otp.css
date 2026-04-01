@@ -18,7 +18,7 @@
   padding: 30px 25px;
   border-radius: 15px;
   text-align: center;
-  width: 350px;
+  width: min(350px, calc(100vw - 32px));
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   animation: popupScale 0.3s ease;
 }
@@ -41,9 +41,9 @@
 }
 
 .otp-inputs input {
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
+  width: clamp(40px, 14vw, 60px);
+  height: clamp(40px, 14vw, 60px);
+  font-size: clamp(18px, 4vw, 24px);
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 8px;

@@ -257,6 +257,8 @@
     gap: 18px;
   }
   .sd-profile {
+    flex: unset;
+    width: 100%;
     border-right: none;
     border-bottom: 1px solid #f0f2f7;
     padding-right: 0;
@@ -268,5 +270,29 @@
   }
   .sd-parents-card {
     padding: 18px 10px 12px 10px;
+  }
+  .sd-info-grid {
+    gap: 8px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sd-wrap { padding: 16px 12px 24px; }
+  .sd-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .sd-info-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .sd-tabs { gap: 16px; overflow-x: auto; }
+  .sd-parent-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .sd-parent-main { min-width: unset; }
+  .sd-parent-phone, .sd-parent-email { min-width: unset; }
+  .sd-parent-settings {
+    position: static;
+    transform: none;
+    margin-left: auto;
   }
 }

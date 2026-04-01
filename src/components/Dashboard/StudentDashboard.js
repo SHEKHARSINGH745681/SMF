@@ -522,11 +522,9 @@ export default function StudentDashboard({ username = "Mia Williams" }) {
                 </div>
                 {AGENDA.map((a, i) => (
                   <div className="sd-agenda-item" key={i}>
-                    <div className="sd-agenda-left">
-                      <div className="sd-agenda-dot" style={{ background: a.dot }} />
-                      <div className="sd-agenda-date">{a.date}</div>
-                    </div>
+                    <div className="sd-agenda-dot" style={{ background: a.dot }} />
                     <div className="sd-agenda-content">
+                      <div className="sd-agenda-date">{a.date}</div>
                       <div className="sd-agenda-title">{a.title}</div>
                       <div className="sd-agenda-subject" style={{ background: a.subjectColor }}>{a.subject}</div>
                     </div>

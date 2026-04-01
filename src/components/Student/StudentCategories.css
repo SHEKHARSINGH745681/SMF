@@ -81,7 +81,7 @@
 .sc-table-wrap {
   background: white;
   border-radius: 0 0 10px 10px;
-  overflow: hidden;
+  overflow-x: auto;
   border: 1px solid #e5e7eb;
 }
 
@@ -176,7 +176,7 @@
 
 .sc-drawer-head h3 {
   margin: 0;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
   color: #111827;
 }
@@ -238,7 +238,7 @@
   width: 130px;
   height: 42px;
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -261,4 +261,19 @@
 
 .sc-save-btn:hover {
   background: #0d9488;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sc-wrap { padding: 16px; }
+  .sc-search-box { width: 180px; }
+  .sc-toolbar { flex-wrap: wrap; gap: 8px; }
+}
+
+@media (max-width: 480px) {
+  .sc-wrap { padding: 12px; }
+  .sc-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .sc-search-box { width: 100%; }
+  .sc-toolbar { padding: 10px; }
+  .sc-cancel-btn, .sc-save-btn { width: 110px; }
 }

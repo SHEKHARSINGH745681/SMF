@@ -1,10 +1,63 @@
-body {
+/* ── Google Fonts (single import for the whole app) ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ── Shared Design Tokens ── */
+:root {
+  --color-primary: #14b8a6;
+  --color-primary-hover: #0d9488;
+  --color-blue: #1D6BBF;
+  --color-text-dark: #101828;
+  --color-text-mid: #344054;
+  --color-text-light: #667085;
+  --color-border: #EAECF0;
+  --color-bg: #F5F6FA;
+  --color-surface: #ffffff;
+  --font-main: 'DM Sans', 'Segoe UI', sans-serif;
+  --radius-card: 14px;
+  --radius-btn: 8px;
+}
+
+/* ── Global Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  /* Transparent so login page gradient shows instantly without gray flash.
+     Each page layout sets its own background on its root element. */
+  background: transparent;
+  color: var(--color-text-mid);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Remove 300ms tap delay on mobile for all interactive elements */
+button, a, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* ── Accessibility: keyboard focus indicator ── */
+:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+/* Remove default focus ring for mouse users (kept for keyboard) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Smooth transitions for interactive elements ── */
+button {
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 code {

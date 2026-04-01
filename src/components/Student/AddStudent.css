@@ -181,8 +181,16 @@
   .as-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .as-span-3 { grid-column: span 2; }
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+  .as-wrap { padding: 16px; }
+  .as-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .as-card { padding: 16px; }
+}
+@media (max-width: 600px) {
+  .as-wrap { padding: 12px; }
   .as-grid-4, .as-grid-3, .as-grid-2 { grid-template-columns: 1fr; }
   .as-half-row { flex-direction: column; }
   .as-span-3 { grid-column: span 1; }
+  .as-actions { flex-direction: column; align-items: center; }
+  .as-cancel-btn, .as-save-btn { width: 100%; max-width: 300px; }
 }
