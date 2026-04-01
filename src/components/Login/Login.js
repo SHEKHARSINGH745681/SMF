@@ -89,11 +89,11 @@ export default function Login({ onSwitchToSignUp, rightOnly = false, onLoginSucc
     // Dummy login logic for testing
     setTimeout(() => {
       setLoading(false);
-      if (email === "shekharsingh745681@gmail.com" && password === "1234") {
+      if (email === "admin" && password === "1234") {
         if (onLoginSuccess) onLoginSuccess(email);
         navigate("/dashboard");
       } else {
-        setError("Invalid email or password (try shekharsingh745681@gmail.com / 1234)");
+        setError("Invalid email or password (try admin / 1234)");
       }
     }, 700);
   };
