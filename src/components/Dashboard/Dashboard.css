@@ -524,6 +524,15 @@ body {
   grid-template-columns: 1.7fr 1fr;
   gap: 14px;
 }
+.sh-bottom-grid-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.sh-bottom-grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.sh-bottom-grid-admission {
+  grid-template-columns: 1fr 1.7fr;
+}
 .sh-events-card { display: flex; flex-direction: column; }
 .sh-events-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
 .sh-events-num { font-size: 30px; font-weight: 700; color: #101828; line-height: 1.1; }
@@ -556,6 +565,290 @@ body {
   font-weight: 500;
 }
 .sh-events-tag.yellow { background: #FEF9C3; border-color: #FDE68A; color: #92400E; }
+
+.sh-notice-board-card {
+  min-height: 360px;
+}
+.sh-notice-board-list {
+  height: 390px;
+  overflow-y: scroll;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #D0D5DD transparent;
+}
+.sh-notice-board-list::-webkit-scrollbar {
+  width: 6px;
+}
+.sh-notice-board-list::-webkit-scrollbar-thumb {
+  background: #D0D5DD;
+  border-radius: 999px;
+}
+.sh-notice-item {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+}
+.sh-notice-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 0.5px solid #EAECF0;
+}
+.sh-notice-content {
+  min-width: 0;
+}
+.sh-notice-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #101828;
+  margin-bottom: 4px;
+}
+.sh-notice-text {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #667085;
+  margin-bottom: 6px;
+}
+.sh-notice-date {
+  font-size: 11.5px;
+  color: #667085;
+}
+
+.sh-upcoming-events-card {
+  min-height: 360px;
+}
+.sh-upcoming-events-list {
+  height: 390px;
+  overflow-y: scroll;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #D0D5DD transparent;
+}
+.sh-upcoming-events-list::-webkit-scrollbar {
+  width: 6px;
+}
+.sh-upcoming-events-list::-webkit-scrollbar-thumb {
+  background: #D0D5DD;
+  border-radius: 999px;
+}
+.sh-upcoming-event-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.sh-upcoming-event-line {
+  width: 3px;
+  height: 78px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.sh-upcoming-event-content {
+  flex: 1;
+  min-width: 0;
+}
+.sh-upcoming-event-time-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.sh-upcoming-event-time {
+  font-size: 16px;
+  font-weight: 500;
+  color: #101828;
+}
+.sh-upcoming-event-meridiem {
+  font-size: 11px;
+  color: #667085;
+  font-weight: 500;
+}
+.sh-upcoming-event-title {
+  font-size: 14px;
+  color: #475467;
+  margin-bottom: 4px;
+}
+.sh-upcoming-event-lead {
+  font-size: 13px;
+  color: #667085;
+}
+.sh-upcoming-event-lead span {
+  color: #0891B2;
+}
+.sh-upcoming-event-view {
+  border: none;
+  background: #F2F4F7;
+  color: #667085;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 8px 12px;
+  min-width: 70px;
+  cursor: pointer;
+}
+
+.sh-leave-request-card {
+  min-height: 360px;
+}
+.sh-leave-request-list {
+  height: 390px;
+  overflow-y: scroll;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #D0D5DD transparent;
+}
+.sh-leave-request-list::-webkit-scrollbar {
+  width: 6px;
+}
+.sh-leave-request-list::-webkit-scrollbar-thumb {
+  background: #D0D5DD;
+  border-radius: 999px;
+}
+.sh-leave-request-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.sh-leave-request-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.sh-leave-request-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 700;
+  border: 0.5px solid #EAECF0;
+  flex-shrink: 0;
+}
+.sh-leave-request-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #101828;
+  margin-bottom: 2px;
+}
+.sh-leave-request-role {
+  font-size: 12px;
+  color: #667085;
+}
+.sh-leave-request-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+.sh-leave-request-days {
+  font-size: 13px;
+  font-weight: 700;
+  color: #101828;
+  margin-bottom: 2px;
+}
+.sh-leave-request-apply {
+  font-size: 12px;
+  color: #667085;
+}
+
+.sh-top-students-card {
+  min-height: 300px;
+}
+.sh-top-students-list {
+  height: 390px;
+  overflow-y: scroll;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #D0D5DD transparent;
+}
+.sh-top-students-list::-webkit-scrollbar {
+  width: 6px;
+}
+.sh-top-students-list::-webkit-scrollbar-thumb {
+  background: #D0D5DD;
+  border-radius: 999px;
+}
+.sh-top-student-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sh-top-student-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sh-top-student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 700;
+  border: 0.5px solid #EAECF0;
+}
+.sh-top-student-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #101828;
+  margin-bottom: 2px;
+}
+.sh-top-student-class {
+  font-size: 12px;
+  color: #667085;
+}
+.sh-top-student-score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sh-top-student-marks {
+  font-size: 12px;
+  color: #667085;
+  font-weight: 500;
+}
+.sh-top-student-score {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sh-top-student-score-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #101828;
+}
 
 /* ── Right Panel ── */
 .sh-right-panel {

@@ -112,6 +112,130 @@ const MESSAGES = [
   { initials: "CJ", name: "Mr. Carl Jenkins", time: "2:00 PM", text: "Budget review meeting for the next fiscal year is on Thursday morning...", bg: "#E0F2FE", color: "#0369A1", badge: null },
 ];
 
+const TOP_STUDENTS = [
+  { name: "Brooklyn Simmons", studentClass: "Six", marks: 20, ringColor: "#4F7CFF", avatarBg: "#FDECC8" },
+  { name: "Floyd Miles", studentClass: "Seven", marks: 35, ringColor: "#F97316", avatarBg: "#E8EEF8" },
+  { name: "Courtney Henry", studentClass: "Eight", marks: 45, ringColor: "#F59E0B", avatarBg: "#E7EDF8" },
+  { name: "Kathryn Murphy", studentClass: "Nine", marks: 65, ringColor: "#22C55E", avatarBg: "#F6E7F6" },
+  { name: "Annette Black", studentClass: "Ten", marks: 65, ringColor: "#4F7CFF", avatarBg: "#FBE4E6" },
+  { name: "Darlene Robertson", studentClass: "Five", marks: 28, ringColor: "#A855F7", avatarBg: "#FEE2E2" },
+  { name: "Leslie Alexander", studentClass: "Eleven", marks: 52, ringColor: "#0EA5E9", avatarBg: "#E0F2FE" },
+  { name: "Kristin Watson", studentClass: "Twelve", marks: 74, ringColor: "#22C55E", avatarBg: "#EDE9FE" },
+  { name: "Robert Fox", studentClass: "Seven", marks: 41, ringColor: "#F97316", avatarBg: "#FEF3C7" },
+  { name: "Eleanor Pena", studentClass: "Eight", marks: 58, ringColor: "#4F46E5", avatarBg: "#DCFCE7" },
+  { name: "Jenny Wilson", studentClass: "Nine", marks: 67, ringColor: "#0891B2", avatarBg: "#DBEAFE" },
+];
+
+const NOTICE_BOARD_ITEMS = [
+  {
+    name: "Admin",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetti",
+    date: "25 Jan 2024",
+    avatarBg: "#E9D5FF",
+  },
+  {
+    name: "Kathryn Murphy",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetti ing industry Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    date: "25 Jan 2024",
+    avatarBg: "#CFF0FF",
+  },
+  {
+    name: "Admin",
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetti",
+    date: "25 Jan 2024",
+    avatarBg: "#F3F4F6",
+  },
+  {
+    name: "John Doe",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    date: "25 Jan 2024",
+    avatarBg: "#CFF0FF",
+  },
+  {
+    name: "Leslie Alexander",
+    text: "Please submit your assignment drafts by Friday for early review and feedback.",
+    date: "26 Jan 2024",
+    avatarBg: "#E0F2FE",
+  },
+  {
+    name: "Dianne Russell",
+    text: "Parent-teacher meeting schedule has been updated. Check the latest calendar slots.",
+    date: "27 Jan 2024",
+    avatarBg: "#FEE2E2",
+  },
+  {
+    name: "Kristin Watson",
+    text: "Science lab safety orientation will be held tomorrow at 10:00 AM in Hall B.",
+    date: "28 Jan 2024",
+    avatarBg: "#EDE9FE",
+  },
+  {
+    name: "Esther Howard",
+    text: "Library maintenance is planned this weekend. Online catalog access may be limited.",
+    date: "29 Jan 2024",
+    avatarBg: "#DCFCE7",
+  },
+  {
+    name: "Robert Fox",
+    text: "Annual sports registrations are now open. Kindly complete forms before the deadline.",
+    date: "30 Jan 2024",
+    avatarBg: "#FEF3C7",
+  },
+];
+
+const UPCOMING_EVENTS_ITEMS = [
+  {
+    time: "09:00 - 09:45",
+    meridiem: "AM",
+    title: "Marketing Strategy Kickoff",
+    lead: "Robert Fox",
+    color: "#A855F7",
+  },
+  {
+    time: "11:15 - 12:00",
+    meridiem: "AM",
+    title: "Product Design Brainstorm",
+    lead: "Leslie Alexander",
+    color: "#F97316",
+  },
+  {
+    time: "02:00 - 03:00",
+    meridiem: "PM",
+    title: "Client Feedback Review",
+    lead: "Courtney Henry",
+    color: "#4F46E5",
+  },
+  {
+    time: "04:15 - 05:00",
+    meridiem: "PM",
+    title: "Sprint Planning & Task Allocation",
+    lead: "Eleanor Pena",
+    color: "#22C55E",
+  },
+  {
+    time: "01:15 - 02:00",
+    meridiem: "PM",
+    title: "Client Feedback Review",
+    lead: "John",
+    color: "#0EA5A4",
+  },
+];
+
+const LEAVE_REQUEST_ITEMS = [
+  { name: "Darlene Robertson", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#FEE2E2" },
+  { name: "Esther Howard", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#FEF3C7" },
+  { name: "Kristin Watson", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#EDE9FE" },
+  { name: "Leslie Alexander", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#F5E8FF" },
+  { name: "Dianne Russell", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#F1F5F9" },
+  { name: "Kristin Watson", role: "English Teacher", days: "3 Days", applyOn: "10 April", avatarBg: "#EDE9FE" },
+  { name: "Robert Fox", role: "Math Teacher", days: "2 Days", applyOn: "12 April", avatarBg: "#E0F2FE" },
+  { name: "Courtney Henry", role: "Science Teacher", days: "4 Days", applyOn: "13 April", avatarBg: "#FCE7F3" },
+  { name: "Eleanor Pena", role: "History Teacher", days: "1 Day", applyOn: "15 April", avatarBg: "#DCFCE7" },
+  { name: "Jenny Wilson", role: "Chemistry Teacher", days: "3 Days", applyOn: "17 April", avatarBg: "#E9D5FF" },
+  { name: "Wade Warren", role: "Biology Teacher", days: "2 Days", applyOn: "18 April", avatarBg: "#FEE2E2" },
+  { name: "Guy Hawkins", role: "Physics Teacher", days: "5 Days", applyOn: "20 April", avatarBg: "#FEF3C7" },
+];
+
 const STAT_CARDS = [
   { value: "124,684", label: "Students", trend: "up", pct: "15%", bg: "card-purple" },
   { value: "12,379", label: "Teachers", trend: "down", pct: "3%", bg: "card-yellow" },
@@ -124,6 +248,15 @@ const donutData = {
   datasets: [{ data: [47, 53], backgroundColor: ["#93C5FD", "#FCD34D"], borderWidth: 0, hoverOffset: 4 }],
 };
 const donutOptions = {
+  responsive: false,
+  cutout: "72%",
+  plugins: { legend: { display: false }, tooltip: { enabled: false } },
+};
+
+const admissionData = {
+  datasets: [{ data: [62, 38], backgroundColor: ["#C4B5FD", "#A7F3D0"], borderWidth: 0, hoverOffset: 4 }],
+};
+const admissionOptions = {
   responsive: false,
   cutout: "72%",
   plugins: { legend: { display: false }, tooltip: { enabled: false } },
@@ -458,7 +591,37 @@ export default function Dashboard({ username = "Linda Adora" }) {
                 </div>
 
                 {/* Earnings + Events */}
-                <div className="sh-bottom-grid">
+                <div className="sh-bottom-grid sh-bottom-grid-admission">
+
+                  <div className="sh-card">
+                    <div className="sh-card-head">
+                      <span className="sh-card-title">New Admission</span>
+                      <span className="sh-dots"><span /><span /><span /></span>
+                    </div>
+                    <div className="sh-donut-wrap">
+                      <div className="sh-donut-rel">
+                        <Doughnut data={admissionData} options={admissionOptions} width={160} height={160} />
+                        <div className="sh-donut-center">
+                          <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                            <circle cx="16" cy="20" r="7" fill="#C4B5FD" />
+                            <circle cx="32" cy="20" r="7" fill="#A7F3D0" />
+                            <path d="M4 40c0-6.6 5.4-12 12-12h4M28 28h4c6.6 0 12 5.4 12 12" stroke="#667085" strokeWidth="1.5" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="sh-gender-row">
+                        <div className="sh-gender">
+                          <div className="sh-gender-val">45,414</div>
+                          <div className="sh-gender-lbl"><span className="sh-gender-dot" style={{ background: "#C4B5FD" }} />Boys (47%)</div>
+                        </div>
+                        <div className="sh-gender">
+                          <div className="sh-gender-val">40,270</div>
+                          <div className="sh-gender-lbl"><span className="sh-gender-dot" style={{ background: "#A7F3D0" }} />Girls (53%)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="sh-card">
                     <div className="sh-card-head">
                       <span className="sh-card-title">Earnings</span>
@@ -473,7 +636,7 @@ export default function Dashboard({ username = "Linda Adora" }) {
                     </div>
                   </div>
 
-                  <div className="sh-card sh-events-card">
+                  {/* <div className="sh-card sh-events-card">
                     <div className="sh-card-head">
                       <span className="sh-card-title">Events</span>
                       <span className="sh-dots"><span /><span /><span /></span>
@@ -493,6 +656,141 @@ export default function Dashboard({ username = "Linda Adora" }) {
                         </span>
                         <span className="sh-events-tag yellow">$837,000</span>
                       </div>
+                    </div>
+                  </div> */}
+                </div>
+
+                {/* Budget + Expense + Revenue */}
+                <div className="sh-bottom-grid sh-bottom-grid-two">
+                  <div className="sh-card sh-notice-board-card">
+                    <div className="sh-card-head">
+                      <span className="sh-card-title">Notice Board</span>
+                      <span className="sh-dots"><span /><span /><span /></span>
+                    </div>
+                    <div className="sh-notice-board-list">
+                      {NOTICE_BOARD_ITEMS.map((item, index) => {
+                        const initials = item.name
+                          .split(" ")
+                          .map((word) => word[0])
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase();
+
+                        return (
+                          <div className="sh-notice-item" key={`${item.name}-${index}`}>
+                            <div className="sh-notice-avatar" style={{ background: item.avatarBg }}>
+                              {initials}
+                            </div>
+                            <div className="sh-notice-content">
+                              <div className="sh-notice-name">{item.name}</div>
+                              <div className="sh-notice-text">{item.text}</div>
+                              <div className="sh-notice-date">{item.date}</div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="sh-card sh-upcoming-events-card">
+                    <div className="sh-card-head">
+                      <span className="sh-card-title">Upcoming Events</span>
+                      <span className="sh-dots"><span /><span /><span /></span>
+                    </div>
+                    <div className="sh-upcoming-events-list">
+                      {UPCOMING_EVENTS_ITEMS.map((event, index) => (
+                        <div className="sh-upcoming-event-item" key={`${event.title}-${index}`}>
+                          <div className="sh-upcoming-event-line" style={{ background: event.color }} />
+                          <div className="sh-upcoming-event-content">
+                            <div className="sh-upcoming-event-time-row">
+                              <span className="sh-upcoming-event-time">{event.time}</span>
+                              <span className="sh-upcoming-event-meridiem">{event.meridiem}</span>
+                            </div>
+                            <div className="sh-upcoming-event-title">{event.title}</div>
+                            <div className="sh-upcoming-event-lead">
+                              Lead by <span>{event.lead}</span>
+                            </div>
+                          </div>
+                          <button className="sh-upcoming-event-view">View</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="sh-card sh-top-students-card">
+                    <div className="sh-card-head">
+                      <span className="sh-card-title">Top Student</span>
+                      <span className="sh-dots"><span /><span /><span /></span>
+                    </div>
+                    <div className="sh-top-students-list">
+                      {TOP_STUDENTS.map((student) => {
+                        const initials = student.name
+                          .split(" ")
+                          .map((word) => word[0])
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase();
+
+                        return (
+                          <div className="sh-top-student-item" key={student.name}>
+                            <div className="sh-top-student-user">
+                              <div className="sh-top-student-avatar" style={{ background: student.avatarBg }}>
+                                {initials}
+                              </div>
+                              <div>
+                                <div className="sh-top-student-name">{student.name}</div>
+                                <div className="sh-top-student-class">Class: {student.studentClass}</div>
+                              </div>
+                            </div>
+                            <div className="sh-top-student-score-wrap">
+                              <span className="sh-top-student-marks">Marks</span>
+                              <div
+                                className="sh-top-student-score"
+                                style={{
+                                  background: `conic-gradient(${student.ringColor} ${student.marks}%, #E5E7EB ${student.marks}% 100%)`,
+                                }}
+                              >
+                                <div className="sh-top-student-score-inner">{student.marks}</div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="sh-card sh-leave-request-card">
+                    <div className="sh-card-head">
+                      <span className="sh-card-title">Leave Requests</span>
+                      <span className="sh-dots"><span /><span /><span /></span>
+                    </div>
+                    <div className="sh-leave-request-list">
+                      {LEAVE_REQUEST_ITEMS.map((item, index) => {
+                        const initials = item.name
+                          .split(" ")
+                          .map((word) => word[0])
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase();
+
+                        return (
+                          <div className="sh-leave-request-item" key={`${item.name}-${index}`}>
+                            <div className="sh-leave-request-left">
+                              <div className="sh-leave-request-avatar" style={{ background: item.avatarBg }}>
+                                {initials}
+                              </div>
+                              <div>
+                                <div className="sh-leave-request-name">{item.name}</div>
+                                <div className="sh-leave-request-role">{item.role}</div>
+                              </div>
+                            </div>
+                            <div className="sh-leave-request-right">
+                              <div className="sh-leave-request-days">{item.days}</div>
+                              <div className="sh-leave-request-apply">Apply on: {item.applyOn}</div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
