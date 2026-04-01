@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import AddStudent from "../Student/AddStudent";
 import StudentList from "../Student/StudentList";
 import StudentDetail from "../Student/StudentDetail";
+import StudentCategories from "../Student/StudentCategories";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -58,6 +59,7 @@ const NAV_ITEMS = [
       { key: "addStudent", label: "Add Student" },
       { key: "studentList", label: "Student List" },
       { key: "studentDetails", label: "Student Details" },
+      { key: "studentCategories", label: "Student Categories" },
     ],
   },
   {
@@ -334,6 +336,8 @@ export default function Dashboard({ username = "Linda Adora" }) {
             <StudentList onAddStudent={() => navigate("addStudent")} />
           ) : activePage === "studentDetails" ? (
             <StudentDetail />
+          ) : activePage === "studentCategories" ? (
+            <StudentCategories />
           ) : (
             <div className="sh-dashboard-body">
               {/* ── Center Column ── */}

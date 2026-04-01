@@ -1,0 +1,135 @@
+.sc-wrap {
+  padding: 24px;
+    width: 100%;        /* ✅ add this */
+
+  background: #f1f5f9;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Header */
+.sc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.sc-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sc-breadcrumb {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.sc-add-btn {
+  background: #14b8a6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sc-add-btn:hover {
+  background: #0d9488;
+}
+
+/* Toolbar */
+.sc-toolbar {
+  display: flex;
+  gap: 12px;
+  background: white;
+  padding: 14px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sc-export-btn {
+  border: 1px solid #d1d5db;
+  padding: 7px 14px;
+  border-radius: 7px;
+  background: white;
+  cursor: pointer;
+}
+
+.sc-search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #d1d5db;
+  padding: 7px 10px;
+  border-radius: 7px;
+  width: 250px;
+}
+
+.sc-search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+/* Table */
+.sc-table-wrap {
+  background: white;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.sc-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sc-table th {
+  text-align: left;
+  padding: 12px;
+  font-size: 13px;
+  color: #374151;
+  background: #f9fafb;
+}
+
+.sc-table td {
+  padding: 14px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+.sc-table tr:hover {
+  background: #f8fafc;
+}
+
+/* Status */
+.sc-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sc-status.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.sc-status.inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Action */
+.sc-dots {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+}   
