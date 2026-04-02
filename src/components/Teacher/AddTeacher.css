@@ -1,0 +1,181 @@
+.at-wrap {
+	padding: 24px 28px;
+	background: #f1f5f9;
+	min-height: 100vh;
+	font-family: "Segoe UI", sans-serif;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.at-header { margin-bottom: 20px; }
+.at-title { font-size: 22px; font-weight: 700; color: #111827; margin: 0 0 4px; }
+.at-breadcrumb { font-size: 13px; color: #6b7280; margin: 0; }
+
+.at-card {
+	background: #fff;
+	border-radius: 12px;
+	padding: 22px 24px;
+	margin-bottom: 16px;
+	border: 1px solid #e5e7eb;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.at-card-title {
+	font-size: 15px;
+	font-weight: 700;
+	color: #111827;
+	margin: 0 0 18px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #f1f5f9;
+}
+
+.at-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.at-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.at-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.at-span-2 { grid-column: span 2; }
+
+.at-field { display: flex; flex-direction: column; gap: 5px; }
+.at-field label {
+	font-size: 12.5px;
+	font-weight: 600;
+	color: #374151;
+}
+.req { color: #ef4444; }
+
+.at-field input,
+.at-field select {
+	padding: 9px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 7px;
+	font-size: 13px;
+	color: #374151;
+	background: #fff;
+	outline: none;
+	transition: border 0.15s;
+	font-family: inherit;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.at-field input:focus,
+.at-field select:focus { border-color: #14b8a6; }
+
+.at-field input::placeholder { color: #9ca3af; }
+
+.at-file-drop {
+	border: 1.5px dashed #d1d5db;
+	border-radius: 7px;
+	padding: 9px 12px;
+	font-size: 12.5px;
+	color: #6b7280;
+	cursor: pointer;
+	text-align: center;
+	background: #fafafa;
+	transition: border-color 0.15s;
+	height: 38px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+.at-file-drop:hover { border-color: #14b8a6; color: #14b8a6; }
+
+.at-textarea {
+	padding: 10px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 7px;
+	font-size: 13px;
+	color: #374151;
+	font-family: inherit;
+	resize: vertical;
+	outline: none;
+	width: 100%;
+	box-sizing: border-box;
+	transition: border 0.15s;
+}
+
+.at-textarea:focus { border-color: #14b8a6; }
+.at-textarea::placeholder { color: #9ca3af; }
+
+.at-pass-wrap { position: relative; }
+.at-pass-wrap input { padding-right: 62px; width: 100%; box-sizing: border-box; }
+
+.at-eye-btn {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 700;
+	color: #6b7280;
+	padding: 0;
+	line-height: 1;
+}
+
+.at-half-row { display: flex; gap: 16px; margin-bottom: 0; }
+.at-half { flex: 1; margin-bottom: 16px; }
+
+.at-actions {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	padding: 24px 0 8px;
+}
+
+.at-cancel-btn {
+	width: 160px;
+	height: 46px;
+	background: #fff;
+	color: #ef4444;
+	border: 1.5px solid #ef4444;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	font-family: inherit;
+	transition: background 0.15s;
+}
+
+.at-cancel-btn:hover { background: #fff1f1; }
+
+.at-save-btn {
+	width: 160px;
+	height: 46px;
+	background: #14b8a6;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	font-family: inherit;
+	transition: background 0.15s;
+}
+
+.at-save-btn:hover { background: #0d9488; }
+
+@media (max-width: 1100px) {
+	.at-grid-4 { grid-template-columns: repeat(2, 1fr); }
+	.at-span-2 { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+	.at-wrap { padding: 16px; }
+	.at-grid-3 { grid-template-columns: repeat(2, 1fr); }
+	.at-card { padding: 16px; }
+}
+
+@media (max-width: 600px) {
+	.at-wrap { padding: 12px; }
+	.at-grid-4, .at-grid-3, .at-grid-2 { grid-template-columns: 1fr; }
+	.at-half-row { flex-direction: column; }
+	.at-span-2 { grid-column: span 1; }
+	.at-actions { flex-direction: column; align-items: center; }
+	.at-cancel-btn, .at-save-btn { width: 100%; max-width: 300px; }
+}

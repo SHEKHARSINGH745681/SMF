@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AddStudent from "../Student/AddStudent";
+import AddTeacher from "../Teacher/AddTeacher";
+import TeacherList from "../Teacher/TeacherList";
 import StudentList from "../Student/StudentList";
 import StudentDetail from "../Student/StudentDetail";
 import { MapPin } from "lucide-react";
@@ -51,8 +53,13 @@ const NAV_ITEMS = [
   },
   {
     key: "teachers", label: "Teachers",
-    icon: <Icon><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></Icon>,
-    hasArrow: true,
+    icon: <Icon><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /></Icon>,
+    submenu: [
+      { key: "addTeacher", label: "Add Teacher" },
+      { key: "teacherList", label: "Teacher List" },
+      { key: "teacherDetails", label: "Teacher Details" },
+      { key: "teacherCategories", label: "Teacher Categories" },
+    ],
   },
   {
     key: "students", label: "Students",
@@ -580,7 +587,11 @@ export default function Dashboard({ username = "Linda Adora" }) {
 
         {/* Content */}
         <div className="sh-content">
-          {activePage === "addStudent" ? (
+          {activePage === "addTeacher" ? (
+            <AddTeacher />
+          ) : activePage === "teacherList" ? (
+            <TeacherList onAddTeacher={() => navigate("addTeacher")} />
+          ) : activePage === "addStudent" ? (
             <AddStudent />
           ) : activePage === "studentList" ? (
             <StudentList onAddStudent={() => navigate("addStudent")} />

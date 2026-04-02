@@ -12,7 +12,7 @@ const INITIAL_VEHICLES = [
     id: "BUS-01",
     label: "UP15CK3020",
     type: "bus",
-    driver: "Ramesh Kumar",
+    driver: "Aditya Meerut",
     phone: "+91 98765 43210",
     route: "Route A — Sector 14 → School",
     stops: ["Sector 14", "MG Road", "Civil Lines", "School Gate"],
@@ -23,8 +23,8 @@ const INITIAL_VEHICLES = [
     fuel: 72,
     eta: "8 min",
     color: "#4F7CFF",
-    lat: 28.6139,
-    lng: 77.209,
+    lat: 28.629842,
+    lng: 77.43703,
   },
   {
     id: "BUS-02",
@@ -100,8 +100,8 @@ const INITIAL_VEHICLES = [
   },
 ];
 
-const SCHOOL_LAT = 28.6304;
-const SCHOOL_LNG = 77.2177;
+const SCHOOL_LAT = 28.634303;
+const SCHOOL_LNG = 77.446248;
 
 const STATUS_CONFIG = {
   "on-route":    { label: "On Route",    bg: "#DCFCE7", color: "#16A34A", dot: "#22C55E" },
@@ -219,9 +219,12 @@ function MapView({ vehicles, selectedId, onSelectVehicle, apiKey }) {
   const mapInstanceRef = useRef(null);
   const markersRef = useRef({});
   const infoWindowRef = useRef(null);
+  const trafficLayerRef = useRef(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState(false);
   const [mapZoom, setMapZoom] = useState(12);
+  const [mapType, setMapType] = useState("roadmap");
+  const [trafficEnabled, setTrafficEnabled] = useState(true);
 
   const getMarkerIcon = useCallback((vehicle, scale, zoom = mapZoom) => {
     if (vehicle.type === "bus") {
@@ -278,6 +281,7 @@ function MapView({ vehicles, selectedId, onSelectVehicle, apiKey }) {
     mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
       center: { lat: SCHOOL_LAT, lng: SCHOOL_LNG },
       zoom: 12,
+      mapTypeId: mapType,
       disableDefaultUI: true,
       zoomControl: true,
       styles: [
@@ -298,25 +302,52 @@ function MapView({ vehicles, selectedId, onSelectVehicle, apiKey }) {
     });
 
     /* School marker */
-    new window.google.maps.Marker({
+    const schoolMarker = new window.google.maps.Marker({
       position: { lat: SCHOOL_LAT, lng: SCHOOL_LNG },
       map: mapInstanceRef.current,
       title: "School",
       icon: {
-        path: window.google.maps.SymbolPath.CIRCLE,
-        scale: 14,
-        fillColor: "#4F46E5",
-        fillOpacity: 1,
-        strokeColor: "#fff",
-        strokeWeight: 3,
+        url: "/images/education.png",
+        scaledSize: new window.google.maps.Size(38, 38),
+        anchor: new window.google.maps.Point(19, 19),
       },
     });
 
     infoWindowRef.current = new window.google.maps.InfoWindow();
+    trafficLayerRef.current = new window.google.maps.TrafficLayer();
+    if (trafficEnabled) {
+      trafficLayerRef.current.setMap(mapInstanceRef.current);
+    }
+
+    schoolMarker.addListener("click", () => {
+      infoWindowRef.current.setContent(
+        `<div style="font-family:inherit;padding:4px 6px">
+          <b style="color:#101828">ABES Ghaziabad</b>
+        </div>`
+      );
+      infoWindowRef.current.open(mapInstanceRef.current, schoolMarker);
+    });
+
     return () => {
+      if (trafficLayerRef.current) {
+        trafficLayerRef.current.setMap(null);
+      }
       window.google.maps.event.removeListener(zoomListener);
     };
-  }, [mapLoaded]);
+  }, [mapLoaded, mapType, trafficEnabled]);
+
+  useEffect(() => {
+    if (!mapInstanceRef.current) return;
+    mapInstanceRef.current.setMapTypeId(mapType);
+  }, [mapType]);
+
+  useEffect(() => {
+    if (!mapInstanceRef.current || !window.google?.maps) return;
+    if (!trafficLayerRef.current) {
+      trafficLayerRef.current = new window.google.maps.TrafficLayer();
+    }
+    trafficLayerRef.current.setMap(trafficEnabled ? mapInstanceRef.current : null);
+  }, [trafficEnabled]);
 
   /* Update / create vehicle markers */
   useEffect(() => {
@@ -375,11 +406,39 @@ function MapView({ vehicles, selectedId, onSelectVehicle, apiKey }) {
     );
   }
 
-  return <div ref={mapRef} className="loc-google-map" />;
+  return (
+    <>
+      <div ref={mapRef} className="loc-google-map" />
+      <div className="loc-map-controls">
+        <button
+          className={`loc-map-control-btn loc-traffic-btn${trafficEnabled ? " active" : ""}`}
+          onClick={() => setTrafficEnabled((v) => !v)}
+        >
+          Traffic {trafficEnabled ? "On" : "Off"}
+        </button>
+        <div className="loc-map-toggle-group">
+          <button
+            className={`loc-map-control-btn${mapType === "roadmap" ? " active" : ""}`}
+            onClick={() => setMapType("roadmap")}
+          >
+            Map
+          </button>
+          <button
+            className={`loc-map-control-btn${mapType === "satellite" ? " active" : ""}`}
+            onClick={() => setMapType("satellite")}
+          >
+            Satellite
+          </button>
+        </div>
+      </div>
+    </>
+  );
 }
 
 /* ── Mock map (no API key fallback) ── */
 function MockMap({ vehicles, selectedId, onSelect }) {
+  const [showSchoolPopup, setShowSchoolPopup] = useState(false);
+
   /* Simple SVG-based pseudo-map */
   const W = 800, H = 520;
   const latMin = 28.57, latMax = 28.68, lngMin = 77.0, lngMax = 77.42;
@@ -410,12 +469,22 @@ function MockMap({ vehicles, selectedId, onSelect }) {
       ))}
 
       {/* School pin */}
-      <g transform={`translate(${schoolX}, ${schoolY})`}>
-        <circle r="16" fill="#4F46E5" opacity="0.15" />
-        <circle r="10" fill="#4F46E5" stroke="#fff" strokeWidth="2.5" />
-        <text textAnchor="middle" y="4" fill="#fff" fontSize="10" fontWeight="700">S</text>
-        <text y="-22" textAnchor="middle" fill="#4F46E5" fontSize="10" fontWeight="700">School</text>
+      <g
+        transform={`translate(${schoolX}, ${schoolY})`}
+        style={{ cursor: "pointer" }}
+        onClick={() => setShowSchoolPopup((prev) => !prev)}
+      >
+        <circle r="18" fill="#ffffff" opacity="0.92" />
+        <image href="/images/education.png" x="-14" y="-14" width="28" height="28" />
+        <text y="-24" textAnchor="middle" fill="#334155" fontSize="10" fontWeight="700">School</text>
       </g>
+
+      {showSchoolPopup && (
+        <g transform={`translate(${schoolX}, ${schoolY - 40})`}>
+          <rect x="-62" y="-16" width="124" height="24" rx="7" fill="#101828" />
+          <text textAnchor="middle" y="0" fill="#fff" fontSize="9" fontWeight="700">ABES Ghaziabad</text>
+        </g>
+      )}
 
       {/* Vehicle markers */}
       {vehicles.map(v => {
@@ -662,7 +731,7 @@ export default function Location() {
           />
           {/* Map overlay legend */}
           <div className="loc-map-legend">
-            <div className="loc-legend-item"><span className="loc-legend-dot" style={{ background: "#4F46E5" }} />School</div>
+            <div className="loc-legend-item"><img src="/images/education.png" alt="School" style={{ width: 14, height: 14 }} />School</div>
             <div className="loc-legend-item"><span className="loc-legend-dot" style={{ background: "#22C55E" }} />On Route</div>
             <div className="loc-legend-item"><span className="loc-legend-dot" style={{ background: "#EAB308" }} />Idle</div>
             <div className="loc-legend-item"><span className="loc-legend-dot" style={{ background: "#F43F5E" }} />Maintenance</div>
