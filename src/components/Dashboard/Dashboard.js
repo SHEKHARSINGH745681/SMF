@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import AddStudent from "../Student/AddStudent";
 import StudentList from "../Student/StudentList";
 import StudentDetail from "../Student/StudentDetail";
+import { MapPin } from "lucide-react";
 import StudentCategories from "../Student/StudentCategories";
+import Location from "./GeoLocation/Location";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -67,6 +69,12 @@ const NAV_ITEMS = [
     icon: <Icon><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></Icon>,
     hasArrow: true,
   },
+  {
+  key: "location",
+  label: "Location",
+  icon: <MapPin size={18} />,
+  hasArrow: false,
+},
   {
     key: "finance", label: "Finance",
     icon: <Icon><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></Icon>,
@@ -580,6 +588,8 @@ export default function Dashboard({ username = "Linda Adora" }) {
             <StudentDetail />
           ) : activePage === "studentCategories" ? (
             <StudentCategories />
+          ) : activePage === "location" ? (
+            <Location />
           ) : (
             <div className="sh-dashboard-body">
               {/* ── Center Column ── */}
