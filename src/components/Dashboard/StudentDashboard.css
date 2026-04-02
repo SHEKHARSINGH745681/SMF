@@ -250,7 +250,7 @@
   gap: 20px;
   position: relative;
   overflow: hidden;
-  min-height: 148px;
+  min-height: 180px;
 }
 .sd-welcome-banner::before {
   content: '';

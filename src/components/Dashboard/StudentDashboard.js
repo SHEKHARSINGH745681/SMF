@@ -59,11 +59,21 @@ const WEEK_DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 /* ─── Static data ─── */
 const WELCOME_STATS = [
-  { icon: "📊", label: "Attendance",      value: "97%",  bg: "#EBF5FF", iconBg: "#DBEAFE" },
+  { icon: "📊", label: "Attendance",      value: "57%",  bg: "#EBF5FF", iconBg: "#DBEAFE" },
   { icon: "✅", label: "Task Completed",  value: "258+", bg: "#ECFDF5", iconBg: "#D1FAE5" },
   { icon: "⏳", label: "Task in Progress",value: "64%",  bg: "#FFF7ED", iconBg: "#FEE2B3" },
   { icon: "🏆", label: "Reward Points",   value: "245",  bg: "#F5F3FF", iconBg: "#EDE9FE" },
 ];
+
+const getAttendanceCardBackground = (value) => {
+  const numericValue = Number.parseFloat(value);
+  return Number.isFinite(numericValue) && numericValue < 60 ? "#FEE2E2" : "#EBF5FF";
+};
+
+const getAttendanceIconBackground = (value) => {
+  const numericValue = Number.parseFloat(value);
+  return Number.isFinite(numericValue) && numericValue < 60 ? "#FECACA" : "#DBEAFE";
+};
 
 const GRADE_SUBJECTS = [
   { subject: "Biology",   score: 82, color: "#A78BFA" },
@@ -424,9 +434,22 @@ export default function StudentDashboard({ username = "Mia Williams" }) {
                 {/* Stat cards */}
                 <div className="sd-welcome-stat-cards-grid">
                   {WELCOME_STATS.map((s) => (
-                    <div className="sd-welcome-stat-card" key={s.label} style={{ background: s.bg }}>
+                    <div
+                      className="sd-welcome-stat-card"
+                      key={s.label}
+                      style={{
+                        background: s.label === "Attendance" ? getAttendanceCardBackground(s.value) : s.bg,
+                      }}
+                    >
                       <div className="sd-welcome-stat-row">
-                        <div className="sd-welcome-stat-icon" style={{ background: s.iconBg }}>{s.icon}</div>
+                        <div
+                          className="sd-welcome-stat-icon"
+                          style={{
+                            background: s.label === "Attendance" ? getAttendanceIconBackground(s.value) : s.iconBg,
+                          }}
+                        >
+                          {s.icon}
+                        </div>
                         <div className="sd-welcome-stat-val">{s.value}</div>
                       </div>
                       <div className="sd-welcome-stat-lbl">{s.label}</div>

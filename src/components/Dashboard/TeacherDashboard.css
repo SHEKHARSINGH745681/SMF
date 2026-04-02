@@ -1,7 +1,7 @@
 /* ============================================================
    SchoolHub — ParentDashboard.css
    ============================================================ */
-
+Musk 
 /* Font and reset are provided by index.css */
 
 /* ── Consistent accent: softer purple-blue bridging login palette ── */
@@ -171,6 +171,7 @@
   filter: blur(1px);
   animation: pdBannerBlobFloatA 10s cubic-bezier(0.42, 0, 0.2, 1) infinite;
 }
+
 .pd-banner::after {
   content: '';
   position: absolute; bottom: -50px; left: 300px;
@@ -211,7 +212,7 @@
   will-change: transform, opacity;
 }
 .pd-banner-illustration {
-  width: 160px; height: 120px;
+  width: 210px; height: 160px;
   display: flex; align-items: flex-end; justify-content: center;
   position: relative;
 }
@@ -229,12 +230,22 @@
   animation: pdBannerPulseSoft 3.8s ease-in-out infinite reverse;
 }
 .pd-banner-lottie {
-  width: 132px;
-  height: 132px;
+  width: 164px;
+  height: 174px;
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
   animation: pdBannerImageFloat 7s ease-in-out 1.1s infinite;
+}
+
+/* stop banner illustration animation */
+.pd-banner-img,
+.pd-banner::before,
+.pd-banner::after,
+.pd-banner-circle1,
+.pd-banner-circle2,
+.pd-banner-lottie {
+  animation: none !important;
 }
 
 @keyframes pdBannerGradientFlow {
